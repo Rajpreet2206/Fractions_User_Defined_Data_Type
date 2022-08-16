@@ -126,7 +126,11 @@ class Fraction{
 int main(){
 	std::cout<<"Testing the Fractions Data Type" << std::endl;
 	Fraction F1(5,3);
-	std::cout<< "Fraction F1(5,3) = " << Fraction::Write(F1) << std::endl;
+	Fraction F2(3,7);
+	std::cout<< "Fractions initialised Successfully " << std::endl;
+	std::cout<<"Fraction F1(5,3)= " ;
+	Fraction::Write(F1);
+	std::cout<< std::endl;
 	return 0;
 
 
