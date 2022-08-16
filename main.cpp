@@ -131,7 +131,13 @@ int main(){
 	std::cout<<"Fraction F1(5,3)= " ;
 	Fraction::Write(F1);
 	std::cout<< std::endl;
+	std::cout<<"Fraction F2(3,7)= ";
+	Fraction::Write(F2);
+	std::cout<<std::endl;
+	std::cout<<"Fractions F1 and F2 after Multiplication gives ";
+	Fraction::Write(F1.Multiply(F2));
+	std::cout<<std::endl;
 	return 0;
-
+// Some more statements to test the correction of all Unary and Binary Operations on Fractions defined as User Defined Data Types
 
 }
