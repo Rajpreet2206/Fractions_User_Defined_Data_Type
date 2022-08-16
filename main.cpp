@@ -3,15 +3,18 @@
 #include<iostream>
 //Asserting that the fraction is proper, i.e. gcd(numerator, denominator) is one
 class Fraction{
+	public:
 	int n_;//numerator: an Integer
 	unsigned int d_;//denominator: a Natural Number
 
-	explicit Fraction(int = 1, int = 1): n_(), d_()
-	{Reduce();}//cannot be used for implicit conversion and copy-initialization
+	explicit Fraction(int n = 1, int d = 1): n_(d< 0 ? -n : n), d_(d<0 ? -d : d)
+		{
+			Reduce();
+		}//cannot be used for implicit conversion and copy-initialization
 	Fraction(const Fraction& f): n_(f.n_), d_(f.d_){ }// Copy Constructor
 
-	~Fraction();//
-	Fraction& operator=(const Fraction& f){n_ = f.n_; d_ = f.d_; return *this}; //Copy Assignment Operator
+	~Fraction(){}//
+	Fraction& operator=(const Fraction& f){n_ = f.n_; d_ = f.d_; return *this; } //Copy Assignment Operator
 
 	static void Write(const Fraction& f){//Printing the fractions in the format of n/d
 		std::cout<< f.n_; if((f.n_ != 0) && (f.d_ != 1)) std::cout<< "/" << f.d_;
@@ -39,7 +42,7 @@ class Fraction{
 	}
 		
 	Fraction Multiply(const Fraction& f2) const{//Binary Operation
-		return Fraction(n_*f2.n_, d*f2.d_);	
+		return Fraction(n_*f2.n_, d_*f2.d_);	
 	}
 		
 	Fraction Divide(const Fraction& f2) const{//Binary Operation
@@ -93,22 +96,22 @@ class Fraction{
 
 	Fraction& Reduce(){//Reduing a fraction to it;s proper form
 		if(d_ == 0) {throw "Fraction with Denominator 0 is undefined";}
-		if(d_ < 0){ n_ = -n;
+		if(d_ < 0){ n_ = -n_;
 			    d_ = static_cast<unsigned int>(-static_cast<int>(d_));
 			    return *this;
 	}
 	
 	if(n_ ==0) {d_ = 1; return *this;}
-	unsigned int n= (n_ > 0) ? n_ : -n_ , g = gcd(n,d);
+	unsigned int n= (n_ > 0) ? n_ : -n_ , g = gcd(n,d_);
 	n_ /= static_cast<int>(g);//conversion of g is required to perform the division of n_ and g
 	d_ /= g;
 	return *this;
 	}
-}	
+};	
 
 int main(){
 	std::cout<<"Testing the Fractions Data Type" << std::endl;
-	Fraction F1 = Fraction(5,3);
+	Fraction F1(5,3);
 	std::cout<< "Fraction F1(5,3) = " << Fraction::Write(F1) << std::endl;
 	return 0;
 
