@@ -17,13 +17,27 @@ class Fraction{
 	Fraction& operator=(const Fraction& f){n_ = f.n_; d_ = f.d_; return *this; } //Copy Assignment Operator
 
 	static void Write(const Fraction& f){//Printing the fractions in the format of n/d
-		std::cout<< f.n_; if((f.n_ != 0) && (f.d_ != 1)) std::cout<< "/" << f.d_;
+		std::cout<< f.n_; 
+		if((f.n_ != 0) && (f.d_ != 1)) std::cout<< "/" << f.d_;
 	}
 
 	static void Read(Fraction& f){ //Taking input fractions in the form of n/d
 		std::cin>> f.n_ >>f.d_;
 		f.Reduce();
 	}
+
+/*	friend ostream& operator<<(ostream& os, const Fraction& f){
+		os << f.n_ ;
+		if((f.n_ !=0) && (f.d_ !=1)) os << "/"<<f.d_;
+		return os;
+	}
+
+	friend istream& operator>>(istream& is, Fraction& f){
+		is>> f.n_ >> f.d_ ;
+		Multiply(f);
+		return is;
+	}
+*/
 	static const Fraction UNITY;// Defining the basic fraction
 	static const Fraction Zero;//Defining Zero/One
 
